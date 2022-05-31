@@ -4,6 +4,8 @@ public class FurnitureChoiceMember {
 
     String name;
     String id;
+    String desc;
+    String url;
 
 
     public FurnitureChoiceMember(){
@@ -24,6 +26,20 @@ public class FurnitureChoiceMember {
 
     public void setId(String id) {
         this.id = id;
+    }
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
 }

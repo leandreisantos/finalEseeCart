@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ESeeCart">
         <activity
+            android:name=".ViewFurnitureActivity"
+            android:exported="false" />
+        <activity
             android:name=".MyPurchaseActivity"
             android:exported="false" />
         <activity

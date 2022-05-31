@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Leandrei Santos/Documents/eseecart/finalEseeCart/app/src/main/res/drawable/custom_border_btn_blue.xml" value="0.1765" />
+        <entry key="..\:/Users/Leandrei Santos/Documents/eseecart/finalEseeCart/app/src/main/res/layout/activity_add_furniture.xml" value="0.209375" />
+        <entry key="..\:/Users/Leandrei Santos/Documents/eseecart/finalEseeCart/app/src/main/res/layout/activity_create_account.xml" value="0.209375" />
+        <entry key="..\:/Users/Leandrei Santos/Documents/eseecart/finalEseeCart/app/src/main/res/layout/activity_show_furniture_list.xml" value="0.209375" />
+        <entry key="..\:/Users/Leandrei Santos/Documents/eseecart/finalEseeCart/app/src/main/res/layout/activity_view_furniture.xml" value="0.209375" />
+        <entry key="..\:/Users/Leandrei Santos/Documents/eseecart/finalEseeCart/app/src/main/res/layout/add_choices_furniture_dialog.xml" value="0.22" />
+        <entry key="..\:/Users/Leandrei Santos/Documents/eseecart/finalEseeCart/app/src/main/res/layout/choicefurniture_item.xml" value="0.209375" />
+        <entry key="..\:/Users/Leandrei Santos/Documents/eseecart/finalEseeCart/app/src/main/res/layout/dashboard_fragment.xml" value="0.209375" />
+        <entry key="..\:/Users/Leandrei Santos/Documents/eseecart/finalEseeCart/app/src/main/res/layout/furniture_item.xml" value="0.209375" />
+        <entry key="..\:/Users/Leandrei Santos/Documents/eseecart/finalEseeCart/app/src/main/res/layout/furniture_item_horizontal.xml" value="0.209375" />
         <entry key="..\:/Users/Ronniel/AndroidStudioProjects/ESeeCart/app/src/main/res/drawable-v24/custom_border_btn_red.xml" value="0.3828125" />
         <entry key="..\:/Users/Ronniel/AndroidStudioProjects/ESeeCart/app/src/main/res/drawable-v24/custom_border_input.xml" value="0.3828125" />
         <entry key="..\:/Users/Ronniel/AndroidStudioProjects/ESeeCart/app/src/main/res/drawable/add_icon.xml" value="0.3828125" />
