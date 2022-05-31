@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "59254608379",
+    "project_id": "eseecart-f8686",
+    "storage_bucket": "eseecart-f8686.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59254608379:android:a0dfdcf5fa245e41847b5e",
+        "android_client_info": {
+          "package_name": "com.example.eseecart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59254608379-bd6die0ovith3phaf2n5plpvg2e0d058.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbhsvbXOWoOHydRyeatqoXgkhN_wukz1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59254608379-bd6die0ovith3phaf2n5plpvg2e0d058.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
