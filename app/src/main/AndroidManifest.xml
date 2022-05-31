@@ -17,6 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ESeeCart">
         <activity
+            android:name=".ShowFurnitureList"
+            android:exported="false" />
+        <activity
+            android:name=".AddFurnitureActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreateAccountActivity"
             android:exported="false" />
         <activity
