@@ -2,6 +2,7 @@ package com.example.eseecart;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,6 +16,8 @@ public class ViewFurnitureActivity extends AppCompatActivity {
     String namebundle,idbundle,pricebundle,colorbundle,urlbundle;
 
     TextView backholder,namholder,priceholder,colorholder;
+
+    TextView buyholder;
 
     ImageView iv;
 
@@ -39,8 +42,14 @@ public class ViewFurnitureActivity extends AppCompatActivity {
         priceholder = findViewById(R.id.tv_price);
         colorholder = findViewById(R.id.tv_color);
         iv = findViewById(R.id.iv);
+        buyholder = findViewById(R.id.tv_buy);
 
         backholder.setOnClickListener(v -> onBackPressed());
+        buyholder.setOnClickListener(v -> {
+            Intent intent = new Intent(ViewFurnitureActivity.this,BuyActivity.class);
+            intent.putExtra("id",idbundle);
+            startActivity(intent);
+        });
     }
 
     @Override
