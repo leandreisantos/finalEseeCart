@@ -167,5 +167,30 @@ public class Furnitureholder extends RecyclerView.ViewHolder {
 
     }
 
+    public void setFeedback(Application application,String id,String userid,String message,String furid){
+        ImageView ivholder = itemView.findViewById(R.id.iv);
+        TextView nameholder = itemView.findViewById(R.id.name);
+        TextView messageholder = itemView.findViewById(R.id.tv_message);
+
+        UserJournalRef = database.getReference("All users").child(currentid);
+
+        UserJournalRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String name = snapshot.child("name").getValue(String.class);
+                String url = snapshot.child("url").getValue(String.class);
+
+                nameholder.setText(name);
+                messageholder.setText(message);
+                Picasso.get().load(url).into(ivholder);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 
 }

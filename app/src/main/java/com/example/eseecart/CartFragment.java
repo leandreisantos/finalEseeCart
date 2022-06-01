@@ -1,12 +1,19 @@
 package com.example.eseecart;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,10 +31,12 @@ public class CartFragment extends Fragment {
 
     databaseReference dbr = new databaseReference();
     FirebaseDatabase database = FirebaseDatabase.getInstance(dbr.keyDb());
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference,databaseReference2,databaseReference3;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String currentid = user.getUid();
+
+    feedbackMember member;
 
     @Nullable
     @Override
@@ -39,7 +48,11 @@ public class CartFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        member = new feedbackMember();
+
         databaseReference = database.getReference("All Payment user").child(currentid);
+        databaseReference3 = database.getReference("All Payment");
+        databaseReference2 = database.getReference("All feedback");
 
         recyclerView = getActivity().findViewById(R.id.rv);
         recyclerView.setHasFixedSize(false);
@@ -62,6 +75,9 @@ public class CartFragment extends Fragment {
                     protected void onBindViewHolder(@NonNull Furnitureholder holder, int position, @NonNull BuyMember model) {
                         holder.setPurchase(getActivity(),model.getId(),model.getUserid(),model.getFurid(),model.getTotal(), model.getDate(), model.getTime(),model.getStatus());
 
+                        String id = getItem(position).getId();
+                        String furid = getItem(position).getFurid();
+                        holder.view.setOnClickListener(view -> showDialog(id,furid));
                     }
 
                     @NonNull
@@ -78,5 +94,40 @@ public class CartFragment extends Fragment {
         firebaseRecyclerAdapter.startListening();
 
         recyclerView.setAdapter(firebaseRecyclerAdapter);
+    }
+
+    private void showDialog(String id,String furid) {
+
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        View view = inflater.inflate(R.layout.comment_dialog,null);
+        EditText messege = view.findViewById(R.id.et_comment);
+        CardView submit = view.findViewById(R.id.cv_login);
+
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+                .setView(view)
+                .create();
+        alertDialog.show();
+
+        submit.setOnClickListener(view1 -> {
+            String tempmessage = messege.getText().toString();
+
+            if(!TextUtils.isEmpty(tempmessage)){
+                String idd = databaseReference2.push().getKey();
+                member.setId(idd);
+                member.setUserid(currentid);
+                member.setMessage(tempmessage);
+                member.setFurid(furid);
+
+                databaseReference2.child(furid).child(idd).setValue(member);
+                databaseReference.child(id).removeValue();
+                databaseReference3.child(id).removeValue();
+                Toast.makeText(getActivity(), "Thank you for your feedback!", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+            }else{
+                Toast.makeText(getActivity(), "Input some feedback", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 }
