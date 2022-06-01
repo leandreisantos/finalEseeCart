@@ -19,6 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class BuyActivity extends AppCompatActivity {
     TextView nameholder,numberholder,addholder;
 
@@ -110,7 +113,28 @@ public class BuyActivity extends AppCompatActivity {
                 cvholder.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                       
+
+                        Calendar cdate = Calendar.getInstance();
+                        SimpleDateFormat currentdate = new SimpleDateFormat("dd-MMMM-yyy");
+                        final String savedate = currentdate.format(cdate.getTime());
+
+                        Calendar ctime = Calendar.getInstance();
+                        SimpleDateFormat currenttime =new SimpleDateFormat("HH-mm");
+                        final String savetime = currenttime.format(ctime.getTime());
+
+                        String id = databaseReference2.push().getKey();
+                        member.setId(id);
+                        member.setUserid(currentid);
+                        member.setFurid(idbundle);
+                        member.setTotal(String.valueOf(tempprice));
+                        member.setDate(savedate);
+                        member.setTime(savetime);
+                        member.setStatus("Pending");
+
+                        databaseReference2.child(id).setValue(member);
+                        databaseReference3.child(id).setValue(member);
+                        Toast.makeText(BuyActivity.this, "Successful payment!", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
                     }
                 });
 

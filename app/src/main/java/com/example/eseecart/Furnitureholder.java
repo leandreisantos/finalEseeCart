@@ -80,5 +80,12 @@ public class Furnitureholder extends RecyclerView.ViewHolder {
         Picasso.get().load(url).into(ivholder);
     }
 
+    public void setNotificationAdmin(Application application,String id,String userid,String furid,String total,String date,String time,String status){
+        ImageView ivholder = itemView.findViewById(R.id.iv);
+        TextView messageholder = itemView.findViewById(R.id.message);
+        clholder = itemView.findViewById(R.id.clf);
+        
+    }
+
 
 }
