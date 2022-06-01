@@ -1,6 +1,7 @@
 package com.example.eseecart;
 
 import android.app.Application;
+import android.media.Image;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,6 +12,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class Furnitureholder extends RecyclerView.ViewHolder {
@@ -20,6 +28,15 @@ public class Furnitureholder extends RecyclerView.ViewHolder {
     ConstraintLayout cl;
     ConstraintLayout clholder;
     CardView view;
+    TextView deleteholder;
+
+    databaseReference dbr = new databaseReference();
+    FirebaseDatabase database = FirebaseDatabase.getInstance(dbr.keyDb());
+    DatabaseReference UserJournalRef;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String currentid = user.getUid();
+
     public Furnitureholder(@NonNull View itemView) {
         super(itemView);
     }
@@ -83,8 +100,71 @@ public class Furnitureholder extends RecyclerView.ViewHolder {
     public void setNotificationAdmin(Application application,String id,String userid,String furid,String total,String date,String time,String status){
         ImageView ivholder = itemView.findViewById(R.id.iv);
         TextView messageholder = itemView.findViewById(R.id.message);
+        TextView statusholder = itemView.findViewById(R.id.status);
+
         clholder = itemView.findViewById(R.id.clf);
+
+        UserJournalRef = database.getReference("All users").child(currentid);
+
+        UserJournalRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String name = snapshot.child("name").getValue(String.class);
+                String url = snapshot.child("url").getValue(String.class);
+
+
+                Picasso.get().load(url).into(ivholder);
+                messageholder.setText(name +" Buy furniture. Tap to view");
+                statusholder.setText(status);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         
+    }
+
+    public void setNotificationfrag(FragmentActivity application,String id,String userid,String furid,String total,String date,String time,String status){
+        TextView messageholder = itemView.findViewById(R.id.tv_id);
+        deleteholder = itemView.findViewById(R.id.tv_delete);
+        ConstraintLayout clholder2 = itemView.findViewById(R.id.cl1);
+
+        clholder = itemView.findViewById(R.id.clf);
+
+        if(status.equals("Pending")){
+            clholder2.setVisibility(View.GONE);
+        }
+        messageholder.setText("Your order "+id+" is out for delivery");
+
+    }
+
+    public void setPurchase(FragmentActivity application,String id,String userid,String furid,String total,String date,String time,String status){
+        ImageView ivholder = itemView.findViewById(R.id.iv);
+        TextView nameholder = itemView.findViewById(R.id.name);
+        view = itemView.findViewById(R.id.cv_login);
+
+        UserJournalRef = database.getReference("All Furnitures item").child(furid);
+
+        UserJournalRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String name = snapshot.child("name").getValue(String.class);
+                String url = snapshot.child("url").getValue(String.class);
+
+                nameholder.setText(name);
+                Picasso.get().load(url).into(ivholder);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 
 

@@ -51,6 +51,8 @@ public class AdminActivity extends AppCompatActivity {
     TextView iconivholder;
     ProgressBar pbholder;
 
+    TextView notifiholder;
+
     private static final int PICK_IMAGE=1;
     Uri imageUridp;
 
@@ -69,12 +71,18 @@ public class AdminActivity extends AppCompatActivity {
 
         backholder = findViewById(R.id.tv_back);
         addchoiceholder = findViewById(R.id.tv_addchoices);
+        notifiholder = findViewById(R.id.tv_notification);
 
         backholder.setOnClickListener(v -> onBackPressed());
         addchoiceholder.setOnClickListener(v -> showdia());
         recyclerView = findViewById(R.id.rv);
         recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        notifiholder.setOnClickListener(view -> {
+            Intent intent = new Intent(AdminActivity.this,NotificationAdminActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void showdia() {

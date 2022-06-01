@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ESeeCart">
         <activity
+            android:name=".ShowBuyerInfo"
+            android:exported="false" />
+        <activity
             android:name=".NotificationAdminActivity"
             android:exported="false" />
         <activity
